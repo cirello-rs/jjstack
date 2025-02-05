@@ -265,6 +265,7 @@ fn update_pr_description(
     let mut patch_cmd = Command::new("gh")
         .args(["api", "--input", "-", "-X", "PATCH", &url])
         .stdin(Stdio::piped())
+        .stdout(Stdio::null())
         .spawn()?;
     {
         let stdin = patch_cmd.stdin.as_mut().ok_or("failed to open stdin")?;
